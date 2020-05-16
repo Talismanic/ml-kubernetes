@@ -1,43 +1,74 @@
-<include [![CircleCI](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes.svg?style=svg)](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes)>
+<Circleci_Status [![CircleCI](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes.svg?style=svg)](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes)>
 
 
-## Project Overview
+## Project Summery
+This is the 5th project of Udacity Nanodegree of Cloud Engineer. In this project we will build a kubernetes cluster where a machine learning model will run. An API is exposed which takes input of different property of house and predict the house price.
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+## Dependencies
+Docker
+Minikube
+python3
+pip
+venv
+## Instruction
+### Step 01 : Checking python app locally
+Clone the code from repository. 
+```git clone https://github.com/Talismanic/udacity-ml-kubernetes.git
+```
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+Create a virtualenv and activate it
 
-### Project Tasks
+```python3 -m venv ~/.devops
+   source ~/.devops/bin/activate   
+```
+Install necessary dependencies with Makefile
+``` make install
+```
+Run standalone app: 
+```python app.py
+```
+### Step 02 : Running App in Docker 
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+Run the shell: 
+```./run_docker.sh
+```
+This will build a docker container and run it on 8000 port of host. Then open a new terminal window keeping the container window open. Then call the API with the following shell script to get the output of in the previous window:
+```./make_prediction.sh
+```
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+### Step 03 : Running App in K8s
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+Run the shell
+```./run_kubernetes.sh
+```
+This will show the container creating status. Wait for sometime and after that in another terminal run following command to check the pod status:
+```kubectl get pods
+```
+Run prediction : 
+```./make_prediction_k8s.sh
+```
+### Step 04: Adding Circle CI
+Go to CircleCi and open an account with Github as organization. The add this project with the provided configuration. The add any line in readme and push to github. This will trigger a build and you will see whether it has failed or passed.
 
----
 
-## Setup the Environment
-
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
-
-### Running `app.py`
-
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
-
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+## File Explaination
+### makefile 
+Instructions to setup python environment and lintins are here.
+### app.py 
+the main python program whic exposed the API and run the model.
+### Dockerfile 
+Definition of the Docker container is there which run python cmd and exposes the service in port 80/
+### run_docker.sh 
+Build the docker container from Docker file and runs it on hostport 8000
+### make_prediction.sh 
+Tests  the API exposed through docker container connecting with hostport 8000
+### upload_docker.sh 
+Uploads the image to dockerhub
+### run_kubernates.sh 
+Pulls the docker image from dockerhub and creates a deployment with that image. 
+### make_prediction_kubernetes.sh 
+Tests  the API exposed through kubernetes cluster connecting with hostport 8001
+### docker_out.txt and kubernetes_out.txt
+These two files contain the output of terminal while testing the APIs through make_prediction.sh and make_prediction_k8s.sh
+### .circleci/config.yml 
+This file contains circleci configuration specifying steps to lint and build the project
