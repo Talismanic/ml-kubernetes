@@ -5,11 +5,11 @@
 This is the 5th project of Udacity Nanodegree of Cloud Engineer. In this project we will build a kubernetes cluster where a machine learning model will run. An API is exposed which takes input of different property of house and predict the house price.
 
 ## Dependencies
-Docker\n\n
-Minikube\n\n
-python3\n\n
-pip\n\n
-venv\n\n
+Docker
+Minikube
+python3
+pip
+venv
 ## Instruction
 ### Step 01 : Checking python app locally
 Clone the code from repository. 
