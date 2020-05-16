@@ -1,4 +1,5 @@
-<include a CircleCI status badge, here>
+<include [![CircleCI](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes.svg?style=svg)](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes)>
+
 
 ## Project Overview
 
