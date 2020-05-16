@@ -13,39 +13,48 @@ venv
 ## Instruction
 ### Step 01 : Checking python app locally
 Clone the code from repository. 
-```git clone https://github.com/Talismanic/udacity-ml-kubernetes.git
+```
+git clone https://github.com/Talismanic/udacity-ml-kubernetes.git
 ```
 
 Create a virtualenv and activate it
 
-```python3 -m venv ~/.devops
-   source ~/.devops/bin/activate   
+```
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate   
 ```
 Install necessary dependencies with Makefile
-``` make install
+``` 
+make install
 ```
 Run standalone app: 
-```python app.py
+```
+python app.py
 ```
 ### Step 02 : Running App in Docker 
 
 Run the shell: 
-```./run_docker.sh
+```
+./run_docker.sh
 ```
 This will build a docker container and run it on 8000 port of host. Then open a new terminal window keeping the container window open. Then call the API with the following shell script to get the output of in the previous window:
-```./make_prediction.sh
+```
+./make_prediction.sh
 ```
 
 ### Step 03 : Running App in K8s
 
 Run the shell
-```./run_kubernetes.sh
+```
+./run_kubernetes.sh
 ```
 This will show the container creating status. Wait for sometime and after that in another terminal run following command to check the pod status:
-```kubectl get pods
+```
+kubectl get pods
 ```
 Run prediction : 
-```./make_prediction_k8s.sh
+```
+./make_prediction_k8s.sh
 ```
 ### Step 04: Adding Circle CI
 Go to CircleCi and open an account with Github as organization. The add this project with the provided configuration. The add any line in readme and push to github. This will trigger a build and you will see whether it has failed or passed.
