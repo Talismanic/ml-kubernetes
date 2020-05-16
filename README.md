@@ -1,4 +1,4 @@
-<Circleci_Status [![CircleCI](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes.svg?style=svg)](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes)>
+[![CircleCI](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes.svg?style=svg)](https://circleci.com/gh/Talismanic/udacity-ml-kubernetes)
 
 
 ## Project Summery
