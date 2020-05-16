@@ -1,0 +1,27 @@
+[root@ip-172-31-81-25 udacity-ml-kubernetes]# ./make_prediction_k8s.sh
+Port: 8001
+Name of the Pod: udacity-ml-cluster-7654d5d4ff-g4c6n
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+[root@ip-172-31-81-25 udacity-ml-kubernetes]# ./make_prediction_k8s.sh
+Port: 8001
+Name of the Pod: udacity-ml-cluster-7654d5d4ff-g4c6n
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+
+
+
+
+
+(.devops) [root@ip-172-31-81-25 udacity-ml-kubernetes]# ./run_kubernetes.sh
+Error from server (AlreadyExists): deployments.apps "udacity-ml-cluster" already exists
+NAME                                  READY   STATUS    RESTARTS   AGE
+udacity-ml-cluster-7654d5d4ff-g4c6n   1/1     Running   0          31m
+Starting to serve on 127.0.0.1:8001
+
